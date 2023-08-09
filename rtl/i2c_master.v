@@ -79,9 +79,12 @@ module i2c_master #(
 	// -------------
 
 	always @(posedge clk)
-		if (rst)
+        if (rst) begin
 			state <= ST_IDLE;
-		else
+			scl_ir <= 1'b1;
+            to_latch <= 1'b0;
+            to_cnt <= 0;
+        end else
 			state <= state_nxt;
 
 	always @(*)
